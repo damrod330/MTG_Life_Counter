@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MTG-er</string>
+    <string name="restart">Restart Health pool</string>
+    <string name="minus">-</string>
+    <string name="plus">+</string>
+    <string name="life">20</string>
 </resources>

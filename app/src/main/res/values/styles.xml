@@ -6,9 +6,11 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorActivatedHighlight">@color/colorAccentClicked</item>
     </style>
 
     <style name="TextButtons" parent="android:Widget.Holo.Button.Borderless">
+
         <item name="android:clickable">true</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">50dp</item>
