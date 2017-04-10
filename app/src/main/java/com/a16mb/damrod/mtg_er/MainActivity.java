@@ -7,7 +7,10 @@ import android.support.annotation.IntegerRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -43,15 +46,20 @@ public class MainActivity extends AppCompatActivity {
     TextView bottomLifeTotal;
 
     @InjectView(R.id.restert_button)
-            Button buttonRestart;
+    Button buttonRestart;
+
+    @InjectView(R.id.keep_awake_checkbox)
+    CheckBox checkboxKeepAwake;
 
     int startingHP = 20;
     int topHP = startingHP;
     int bottomHP = startingHP;
+    boolean isCheckedAwake = false;
 
     @Override
     protected void onStop() {
         super.onStop();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         saveDataToSharedPref();
     }
 
@@ -64,8 +72,28 @@ public class MainActivity extends AppCompatActivity {
 
         setRandomBG();
         readDataFromSharedPref();
+
+        checkboxKeepAwake.setChecked(isCheckedAwake);
+
+
         topLifeTotal.setText(Integer.toString(topHP));
         bottomLifeTotal.setText(Integer.toString(bottomHP));
+
+        checkboxKeepAwake.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if(isChecked)
+                {
+                    getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    isCheckedAwake = true;
+                }
+                else
+                {
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+                    isCheckedAwake = false;
+                }
+            }
+        });
 
         buttonRestart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -120,6 +148,7 @@ void saveDataToSharedPref()
     editor.putInt("topHP", topHP);
     editor.putInt("bottomHP", bottomHP);
     editor.putInt("startingHP",startingHP);
+    editor.putBoolean("isChecked", isCheckedAwake);
     editor.apply();
 }
 
@@ -130,6 +159,7 @@ void readDataFromSharedPref()
     startingHP = prefs.getInt("startingHP", 20);
     topHP = prefs.getInt("topHP", startingHP);
     bottomHP = prefs.getInt("bottomHP", startingHP);
+    isCheckedAwake = prefs.getBoolean("isChecked", false);
 }
 //Sets random backgrund images from drawable
     void setRandomBG()

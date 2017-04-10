@@ -57,14 +57,14 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:background="@color/colorPrimaryDark"
         android:gravity="center"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/restert_button"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="32dp"
 
             android:layout_marginTop="3dp"
@@ -73,7 +73,21 @@
             android:gravity="center"
             android:text="@string/restart"
             android:textColor="@color/colorAccent"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_weight="2"/>
+
+        <CheckBox
+            android:id="@+id/keep_awake_checkbox"
+            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorAccentDark"
+            android:background="@color/colorPrimary"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="@string/keep_screen_awake"
+            android:layout_weight="1"/>
+
     </LinearLayout>
 
 
