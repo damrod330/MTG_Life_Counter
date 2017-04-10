@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //this line is needet in oreder for injection to work
         ButterKnife.inject(this);
 
         setRandomBG();
@@ -110,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //This method allows to save varribles to Shared Preferences
 void saveDataToSharedPref()
 {
     SharedPreferences prefs = this.getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -120,6 +122,7 @@ void saveDataToSharedPref()
     editor.apply();
 }
 
+//This method allows to read varribles from Shared Preferences
 void readDataFromSharedPref()
 {
     SharedPreferences prefs = this.getSharedPreferences("settings", Context.MODE_PRIVATE);
@@ -127,7 +130,7 @@ void readDataFromSharedPref()
     topHP = prefs.getInt("topHP", startingHP);
     bottomHP = prefs.getInt("bottomHP", startingHP);
 }
-
+//Sets random backgrund images from drawable
     void setRandomBG()
     {
         int[] imgID = {
