@@ -46,7 +46,8 @@ public class MainActivity extends AppCompatActivity {
             Button buttonRestart;
 
     int startingHP = 20;
-    int topHP = startingHP, bottomHP = startingHP;
+    int topHP = startingHP;
+    int bottomHP = startingHP;
 
     @Override
     protected void onStop() {
